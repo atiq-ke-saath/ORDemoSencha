@@ -6,15 +6,25 @@ Ext.define('ORDemo.view.Main', {
     ],
     
     config: {
+        scrollable: true,
         
+        showAnimation: {
+            type: 'slide',
+            direction: 'right'
+        },        
         items: [
             {  
-                html:'<br/><br/><br/><br/>'  
+                html:[
+                    '<br/>',
+                    '<div align="right"><img src="/ORDemo/resources/icons/Oracle-Retail-Logo-NB.png"/></div>',
+                    '<br/>'  
+                ].join("")
             },
+            
             {
                 xtype: 'fieldset',
                 itemId: 'loginForm',
-                title: 'Login Form',
+                title: 'Sign In',
                 
                 items: [
                     {
@@ -47,7 +57,15 @@ Ext.define('ORDemo.view.Main', {
                         
                     }
                 ]
-            }
+            },
+            
+            {  
+                html:[
+                    '<br/>',
+                    '<div align="right"><img src="/ORDemo/resources/icons/keep-challenging-logo.png"/></div>',
+                    '<br/>'  
+                ].join("")
+            },
         ]
     }
 });

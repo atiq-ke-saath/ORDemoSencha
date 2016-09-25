@@ -14,11 +14,18 @@ Ext.define('ORDemo.controller.Main',{
             loginForm: '#loginForm',
             txtUsername: '#txtUsername',
             txtPassword: '#txtPassword',
-            btnLogin: '#btnLogin'
+            btnLogin: '#btnLogin',
+            navView: '#navView'
         },
         control: {
             btnLogin: {
                 tap: 'doLogin'
+            },
+            'button[action=logout]': {
+                tap: 'doLogout'
+            },
+            'button[action=backToHome]': {
+                tap: 'navToHome'
             }
         }
     },
@@ -29,12 +36,20 @@ Ext.define('ORDemo.controller.Main',{
         var password = this.getTxtPassword().getValue();
         
         if(username=='admin' && password=='1234') {
-            Ext.Msg.alert('Sign-in','Login Successful',Ext.emptyFn);
-            Ext.Viewport.add(Ext.create('ORDemo.view.Home'));
-            console.log('Home View Added');
+            //Ext.Msg.alert('Sign-in','Login Successful',Ext.emptyFn);
+            Ext.Viewport.add({xtype: 'homeScreen'});
+            Ext.Viewport.setActiveItem({xtype: 'homeScreen'});
         }
         else {
             Ext.Msg.alert('Sign-in','Login Denied',Ext.emptyFn);
         }
+    },
+        
+    doLogout: function() {
+        Ext.Viewport.setActiveItem({xtype:'main'});
+    },
+    
+    navToHome: function() {
+        Ext.Viewport.setActiveItem({xtype:'homeScreen'});
     }
 });

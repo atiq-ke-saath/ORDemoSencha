@@ -1,14 +1,19 @@
 Ext.define('ORDemo.view.Home', {
     extend: 'Ext.Panel',
     xtype: 'homeScreen',
-    
+    alias: 'widget.homeScreen',
     
     config: {
         
-        fullscreen: true,        
+        //fullscreen: true,        
         scrollable: true,
         layout: 'vbox',
-                
+        
+        showAnimation: {
+            type: 'slide',
+            direction: 'left'    
+        },
+        
         items: [
             {
                     docked: 'top', 
@@ -19,11 +24,7 @@ Ext.define('ORDemo.view.Home', {
                             xtype: 'button',
                             html: 'Logout',
                             align: 'right',
-                            listeners: {
-                                tap: function(btn, evt, eOpts){
-                                    Ext.Msg.alert('Logout','You Clicked Logout', Ext.emptyFn);
-                                }
-                            }    
+                            action: 'logout'
                         }
                     ]
             },
@@ -35,8 +36,16 @@ Ext.define('ORDemo.view.Home', {
                 items: [
                     {
                         xtype: 'button',
-                        html: 'My Profile',                        
-                        style: 'background: #F8C273; margin: 2px; border-radius:0',
+                        html: [
+                            '<div align="left">',
+                            '   <div style="float: left;"><img src="/ORDemo/resources/icons/user_img.png"/></div>',
+                            '   <div style="float: right;">',
+                            '       <p style="font-family: "Comic Sans";">Rahman, Atiqur</p>',
+                            '       <p style="font-size: small; font-weight: normal;">Merchandise Team Lead</p>',
+                            '   </div>',
+                            '</div>'
+                        ].join(""),
+                        style: 'background: #E8E0D3; margin: 2px; border-radius:0',
                         flex: 1,
                         listeners: {
                             tap: function(btn, evt, eOpts){
@@ -58,12 +67,17 @@ Ext.define('ORDemo.view.Home', {
                         html: 'Items',
                         style: 'background: #FF5733; margin: 2px; border-radius:0',
                         flex: 1,
+                        listeners: {
+                            tap: function() {
+                                Ext.Viewport.setActiveItem({xtype: 'itemScreen'});
+                            }
+                        }
                     },
                     {
                         xtype: 'button',
                         html: 'Pricing',
                         style: 'background: #5AD3A7; margin: 2px; border-radius:0',
-                        flex: 1,
+                        flex: 1
                     }
                 ]
             },
@@ -75,7 +89,6 @@ Ext.define('ORDemo.view.Home', {
                     {
                         xtype: 'button',
                         html: 'Orders',
-                        renderTo: Ext.getBody(),
                         style: 'background: #5589EA; margin: 2px; border-radius:0',
                         flex: 1,
                     },

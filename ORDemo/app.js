@@ -18,7 +18,7 @@ Ext.application({
     ],
 
     views: [
-        'Main'
+        'Main', 'Welcome', 'Home', 'Dummy', 'Item'
     ],
     
     controllers: [
